@@ -27,7 +27,7 @@ public class Scooter {
 	private Integer batteryLevel;
 	
 	@Column (nullable = false)
-	private Long maxSpeed;
+	private Integer maxSpeed;
 	
 	@Column (nullable = false)
 	private Boolean rented;
@@ -62,11 +62,11 @@ public class Scooter {
 		this.batteryLevel = batteryLevel;
 	}
 
-	public Long getMaxSpeed() {
+	public Integer getMaxSpeed() {
 		return maxSpeed;
 	}
 
-	public void setMaxSpeed(Long maxSpeed) {
+	public void setMaxSpeed(Integer maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
 
