@@ -46,9 +46,11 @@ public class ScooterController {
 	
 	@PreAuthorize("permitAll()")
 	@GetMapping
-	public ResponseEntity<List<ScooterDto>> getAll(@RequestParam (required = false, defaultValue = "0") Integer pageNo) {
+	public ResponseEntity<List<ScooterDto>> getAll(@RequestParam (required = false, defaultValue = "0") Integer pageNo,
+			@RequestParam (required = false) Long addressId, @RequestParam (required = false) Integer batteryLevelMin,
+			@RequestParam (required = false) Integer batteryLevelMax) {
 		
-		Page<Scooter> page = scooterService.getAll(pageNo);
+		Page<Scooter> page = scooterService.search(addressId, batteryLevelMin, batteryLevelMax, pageNo);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Total-Pages", Integer.toString(page.getTotalPages()));

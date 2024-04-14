@@ -13,6 +13,7 @@ public interface ScooterService {
 	Scooter save (Scooter trotinet);
 	Scooter update (Scooter trotinet);
 	Scooter delete (Long id);
+	Page<Scooter> search (Long addressId, Integer batteryLevelMin, Integer batteryLevelMax, Integer pageNo);
 	
 
 }

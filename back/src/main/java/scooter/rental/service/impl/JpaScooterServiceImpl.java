@@ -50,4 +50,9 @@ public class JpaScooterServiceImpl implements ScooterService {
 		return null;
 	}
 
+	@Override
+	public Page<Scooter> search(Long addressId, Integer batteryLevelMin, Integer batteryLevelMax, Integer pageNo) {
+		return scooterRepository.search(addressId, batteryLevelMin, batteryLevelMax, PageRequest.of(pageNo, 2));
+	}
+
 }
