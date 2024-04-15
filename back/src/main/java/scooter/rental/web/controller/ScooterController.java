@@ -27,6 +27,7 @@ import scooter.rental.model.Scooter;
 import scooter.rental.service.ScooterService;
 import scooter.rental.support.ScooterDtoToScooter;
 import scooter.rental.support.ScooterToScooterDto;
+import scooter.rental.web.dto.ReturnScooterDto;
 import scooter.rental.web.dto.ScooterDto;
 
 
@@ -121,6 +122,25 @@ public class ScooterController {
 		}
 		
 		
+	}
+	
+	@PreAuthorize("hasRole('USER')")
+	@PutMapping (value = "/{id}/return", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> returnScooter (@PathVariable Long id, @RequestBody ReturnScooterDto returnScooter){
+		
+		if(!returnScooter.getId().equals(id)) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}	
+		
+		Scooter returned = scooterService.returnScooter(returnScooter);
+		
+		if(returned != null) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+			
 	}
 
 }
